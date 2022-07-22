@@ -1,0 +1,149 @@
+body {
+    width: 100vw;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(34, 34, 34);
+    color: white;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    height: 10vh;
+    border-bottom: 1px solid grey;
+    padding: 0 15px;
+}
+
+.book-shelf-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.book-shelf {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 50%;
+    padding: 15px;
+}
+
+.book-shelf-title {
+    width: 100%;
+    align-self: flex-start;
+}
+
+.book-shelf-content {
+    width: 100%;
+    padding: 15px;
+}
+
+.book {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 7px 10px;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.book-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+.book-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    color: white;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.book-notdone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    color: white;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.book-done {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    color: white;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.book-delete:hover {
+    color: red;
+    transition: all 500ms;
+}
+
+.book-notdone:hover {
+    color: orange;
+    transition: all 500ms;
+}
+
+.book-done:hover {
+    color: green;
+    transition: all 500ms;
+}
+
+.input-book-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    max-width: 400px;
+    align-self: center;
+    margin: auto;
+    padding: 25px;
+}
+
+.form-input {
+    padding: 7px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.form-check {
+    margin-bottom: 25px;
+}
+
+.form-button {
+    width: 100%;
+    padding: 7px 14px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.form-button:hover {
+    color: white;
+    font-weight: bold;
+    border: 1px solid #f9f2ed;
+    background-color: royalblue;
+    cursor: pointer;
+    transition: all 500ms;
+}
