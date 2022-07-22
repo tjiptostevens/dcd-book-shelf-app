@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Shelves App</title>
     <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="./assets/css/scrollbar.css" />
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
 </head>
@@ -62,13 +63,7 @@
                 <div class="book-shelf-title" style="border-bottom: 2px solid green">
                     <p>Done</p>
                 </div>
-                <div id="done" class="book-shelf-content">
-                    <div class="book">
-                        <p>title: "Harry Potter and the Philosopher's Stone"</p>
-                        <p>author: "J.K Rowling"</p>
-                        <p>year: 1997</p>
-                    </div>
-                </div>
+                <div id="done" class="book-shelf-content"></div>
             </div>
         </section>
     </main>
@@ -118,6 +113,126 @@
             author: "J.K Rowling",
             year: 1997,
             isComplete: true,
+        }, {
+            id: 3657848524,
+            title: "Harry Potter and the Philosopher's Stone",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 365784852,
+            title: "Captain America",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 36578485,
+            title: "Superman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 3657848,
+            title: "Batman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 3657848524,
+            title: "Harry Potter and the Philosopher's Stone",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 365784852,
+            title: "Captain America",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 36578485,
+            title: "Superman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 3657848,
+            title: "Batman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 3657848524,
+            title: "Harry Potter and the Philosopher's Stone",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 365784852,
+            title: "Captain America",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 36578485,
+            title: "Superman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 3657848,
+            title: "Batman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 3657848524,
+            title: "Harry Potter and the Philosopher's Stone",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 365784852,
+            title: "Captain America",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 36578485,
+            title: "Superman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 3657848,
+            title: "Batman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 3657848524,
+            title: "Harry Potter and the Philosopher's Stone",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 365784852,
+            title: "Captain America",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
+        }, {
+            id: 36578485,
+            title: "Superman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: false,
+        }, {
+            id: 3657848,
+            title: "Batman",
+            author: "J.K Rowling",
+            year: 1997,
+            isComplete: true,
         }, ];
 
         let button = document.getElementById("book-submit");
@@ -126,86 +241,44 @@
         let notDoneContent = document.getElementById("notdone");
         let doneContent = document.getElementById("done");
 
-        function addBook(params) {
-            let div = document.createElement("div");
-            div.classList.add("book");
+        function addBook(Arr, Out, Done) {
+            Arr.forEach((d) => {
+                // book detail input
+                let div = document.createElement("div");
+                div.className = "book";
+                div.id = d.id;
+                div.innerHTML =
+                    '<div class="book-detail">' +
+                    d.title +
+                    "<br/><small>~ " +
+                    d.author +
+                    " - " +
+                    d.year +
+                    "</small></div>" +
+                    '<div class="book-control">' +
+                    '<div class="book-delete"><i class="bi bi-x-square"></i></div>' +
+                    (Done ?
+                        '<div class="book-notdone"><i class="bi bi-dash-square"></i></div>' :
+                        '<div class="book-done"><i class="bi bi-check-square"></i></div>') +
+                    "</div>";
+
+                console.log(div);
+                // render to book content div
+                Out.appendChild(div);
+            });
         }
 
         function bookNotDone() {
             let notDoneArray = books.filter((f) => f.isComplete === false);
-            // book detail input
-            let div = document.createElement("div");
-            let div1 = document.createElement("div");
-            let div2 = document.createElement("div");
-            let br = document.createElement("br");
-            let small = document.createElement("small");
-            let divDel = document.createElement("div");
-            let divNot = document.createElement("div");
-            let divDone = document.createElement("div");
-            let iDel = document.createElement("i");
-            let iNot = document.createElement("i");
-            let iDone = document.createElement("i");
-            div.className = "book";
-            div.id = notDoneArray[0].id;
-
-            div1.className = "book-detail";
-            div.appendChild(div1);
-            div1.innerHTML = notDoneArray[0].title;
-            small.textContent =
-                "~ " + notDoneArray[0].author + " - " + notDoneArray[0].year;
-            div1.appendChild(br);
-            div1.appendChild(small);
-
-            div2.className = "book-control";
-            divDel.className = "book-delete";
-            divNot.className = "book-notdone";
-            divDone.className = "book-done";
-            iDel.className = "bi bi-x-square";
-            iNot.className = "bi bi-dash-square";
-            iDone.className = "bi bi-check-square";
-            div.appendChild(div2);
-            div2.appendChild(divDel);
-            div2.appendChild(divNot);
-            div2.appendChild(divDone);
-            divDel.appendChild(iDel);
-            divNot.appendChild(iNot);
-            divDone.appendChild(iDone);
-
-            console.log(div);
-
-            // render to book content div
-            notDoneContent.appendChild(div);
-            return notDoneArray;
+            addBook(notDoneArray, notDoneContent, false);
         }
-        console.log(bookNotDone());
 
         function bookDone() {
             let doneArray = books.filter((f) => f.isComplete === true);
-            let div = document.createElement("div");
-            div.classList.add("book");
+            addBook(doneArray, doneContent, true);
         }
-
-        let input = document.getElementById("todo-input");
-        let output = document.getElementById("todo-output");
-
-        // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
-        // Fungsi yang digunakan untuk menambahkan tulisan
-        // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-        function fnClickHandler(toDoItem) {
-            let li = document.createElement("li");
-            li.classList.add("todo-list");
-
-            function inputValue() {
-                li.innerHTML = input.value;
-                output.appendChild(li);
-                input.value = "";
-            }
-            if (toDoItem.type === "click") {
-                inputValue();
-            } else if (toDoItem.key === "Enter") {
-                inputValue();
-            }
-        }
+        console.log(bookNotDone());
+        console.log(bookDone());
     </script>
 </body>
 

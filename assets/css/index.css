@@ -1,5 +1,5 @@
 body {
-    width: 100vw;
+    width: 100%;
     max-height: 100vh;
     margin: 0;
     padding: 0;
@@ -42,6 +42,8 @@ header {
 .book-shelf-content {
     width: 100%;
     padding: 15px;
+    overflow: auto;
+    height: inherit;
 }
 
 .book {
@@ -52,6 +54,7 @@ header {
     justify-content: space-between;
     align-items: center;
     align-content: center;
+    margin-bottom: 7px;
 }
 
 .book-control {
@@ -109,6 +112,29 @@ header {
     color: green;
     transition: all 500ms;
 }
+
+
+/* .tooltip {
+    position: relative;
+}
+
+.tooltiptxt {
+    visibility: hidden;
+    background-color: rgba(255, 255, 255, 0.39);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 3px 6px;
+    font-size: 10px;
+    position: absolute;
+    z-index: 1;
+    transition: all 500ms;
+}
+
+.tooltip:hover>.tooltiptxt {
+    visibility: visible;
+    transition: all 500ms;
+} */
 
 .input-book-form {
     display: flex;
