@@ -19,31 +19,6 @@
       <div style="width: 100%">
         <h1>Book Shelves App</h1>
       </div>
-      <form
-        id="search"
-        style="display: flex; flex-direction: row; align-items: center"
-      >
-        <input
-          id="input-search"
-          class="form-input"
-          type="text"
-          placeholder="Search book"
-          required
-        />
-        <button
-          style="
-            color: white;
-            width: 25px;
-            height: 25px;
-            cursor: pointer;
-            padding: 0 15px;
-            background: transparent;
-            border: transparent;
-          "
-        >
-          <i class="bi bi-search"></i>
-        </button>
-      </form>
     </header>
     <main
       class="main-container"
@@ -77,10 +52,28 @@
             <span style="color: orange; margin: 15px 0"><b>*</b> required</span>
           </form>
         </div>
-        <!-- <div class="book-shelf-container">
-          <button id="startApp">Start</button>
-          <button onclick="localStorage.clear()">Clear</button>
-        </div> -->
+        <div class="book-shelf">
+          <div class="book-shelf-title" style="border-bottom: 2px solid yellow">
+            <div style="display: flex; justify-content: space-between">
+              <p>Search Book</p>
+            </div>
+          </div>
+          <div style="width: 80%; position: relative; padding: 15px auto">
+            <input
+              id="input-search"
+              class="form-input"
+              type="text"
+              placeholder="Search book by title, author & year."
+              style="width: 100%"
+              required
+            />
+            <i
+              class="bi bi-search"
+              style="position: absolute; right: 15px; top: 10px; color: grey"
+            ></i>
+          </div>
+          <div id="search-res" class="book-shelf-content"></div>
+        </div>
       </section>
       <section class="book-shelf-container">
         <div class="book-shelf">

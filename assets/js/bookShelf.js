@@ -10,9 +10,9 @@ let BOOKSTORE = getBookStorage();
 let notDoneContent = document.getElementById("notdone");
 let doneContent = document.getElementById("done");
 let form = document.getElementById("input-book-form");
-let search = document.getElementById("search");
+let search = document.getElementById("input-search");
 
-search.addEventListener("submit", (e) => handleSearch(e));
+search.addEventListener("change", (e) => handleSearch(e));
 
 // Initialize App Local Storage on LOAD
 const startApp = () => {
@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
 });
 // Handle Search
 const handleSearch = (e) => {
-  e.preventDefault();
+  // e.preventDefault();
   let searchInput = document.getElementById("input-search");
   const searchRegex =
     searchInput && new RegExp(`${searchInput.value.toUpperCase()}`, "gi");
