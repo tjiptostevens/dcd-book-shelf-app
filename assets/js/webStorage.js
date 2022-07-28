@@ -25,8 +25,13 @@ const getBookStorage = () => {
   x = JSON.parse(x);
   return x;
 };
+const updateBookStorage = (book) => {
+  localStorage.removeItem("BOOKS");
+  localStorage.setItem("BOOKS", JSON.stringify(book));
+  window.location.reload();
+};
 
-export { initStorage, addBookStorage, getBookStorage };
+export { initStorage, addBookStorage, getBookStorage, updateBookStorage };
 
 // let BOOKS = [
 //   {

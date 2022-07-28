@@ -1,13 +1,18 @@
-import { initStorage, addBookStorage, getBookStorage } from "./webStorage.js";
+import {
+  initStorage,
+  addBookStorage,
+  getBookStorage,
+  updateBookStorage,
+} from "./webStorage.js";
 
 // Define Variable
 let BOOKSTORE = getBookStorage();
 let notDoneContent = document.getElementById("notdone");
 let doneContent = document.getElementById("done");
 let form = document.getElementById("input-book-form");
-let btnDelete = document.getElementById("book-delete");
-let btnNotDone = document.getElementById("book-notdone");
-let btnDone = document.getElementById("book-done");
+let search = document.getElementById("search");
+
+search.addEventListener("submit", (e) => handleSearch(e));
 
 // Initialize App Local Storage on LOAD
 const startApp = () => {
@@ -18,6 +23,21 @@ window.addEventListener("load", () => {
   bookNotDone();
   bookDone();
 });
+// Handle Search
+const handleSearch = (e) => {
+  e.preventDefault();
+  let searchInput = document.getElementById("input-search");
+  const searchRegex =
+    searchInput && new RegExp(`${searchInput.value.toUpperCase()}`, "gi");
+  let arr = BOOKSTORE.filter(
+    (f) =>
+      !searchRegex ||
+      searchRegex.test(
+        f.title.toUpperCase() + f.author.toUpperCase() + f.year.toString()
+      )
+  );
+  console.log(arr);
+};
 
 // Handle Submit form
 const handleSubmit = () => {
@@ -74,14 +94,22 @@ const arrBook = (Arr, Out, Status) => {
           d.year +
           "</small></div>" +
           '<div class="book-control">' +
-          '<div id="book-delete" class="book-delete"><i class="bi bi-x-square"></i></div>' +
+          '<div id="del-' +
+          d.id +
+          '" class="book-delete"><i class="bi bi-x-square"></i></div>' +
           (Status
-            ? '<div id="book-notdone" class="book-notdone"><i class="bi bi-dash-square"></i></div>'
-            : '<div id="book-done" class="book-done"><i class="bi bi-check-square"></i></div>') +
+            ? '<div id="not-' +
+              d.id +
+              '" class="book-notdone"><i class="bi bi-dash-square"></i></div>'
+            : '<div id="done-' +
+              d.id +
+              '" class="book-done"><i class="bi bi-check-square"></i></div>') +
           "</div>";
 
         // render to book content div
         Out.appendChild(div);
+        // Add listener to each button
+        addListener(d.id);
       });
     }
   }
@@ -95,18 +123,45 @@ const bookDone = () => {
   arrBook(BOOKSTORE, doneContent, true);
 };
 
-const handleDelete = (id) => {
-  console.log(id);
+// Button Control
+const handleDelete = (e) => {
+  let data = BOOKSTORE;
+  let id = parseInt(e.target.parentElement.id.split("-")[1]);
+  let index = data.findIndex((obj) => {
+    console.log(obj);
+    return obj.id === id;
+  });
+  data.splice(index, 1);
+  updateBookStorage(data);
+  console.log("BOOK DELETED");
 };
 
-const handleNotDone = (id) => {
-  console.log(id);
+const handleNotDone = (e) => {
+  let data = BOOKSTORE;
+  let id = parseInt(e.target.parentElement.id.split("-")[1]);
+  const index = data.map((obj) =>
+    obj.id === id ? { ...obj, isComplete: false } : obj
+  );
+  updateBookStorage(index);
+  console.log("BOOK UPDATED");
 };
 
-const handleDone = (id) => {
-  console.log(id);
+const handleDone = (e) => {
+  let data = BOOKSTORE;
+  let id = parseInt(e.target.parentElement.id.split("-")[1]);
+  const index = data.map((obj) =>
+    obj.id === id ? { ...obj, isComplete: true } : obj
+  );
+  updateBookStorage(index);
+  console.log("BOOK UPDATED");
 };
 
-// btnDelete.addEventListener("click", (e) => handleDelete(e));
-// btnNotDone.addEventListener("click", (e) => handleNotDone(e));
-// btnDone.addEventListener("click", (e) => handleDone(e));
+// add listener to each button by ID
+const addListener = (id) => {
+  let btnDelete = document.getElementById(`del-${id}`);
+  let btnNotDone = document.getElementById(`not-${id}`);
+  let btnDone = document.getElementById(`done-${id}`);
+  btnDelete && btnDelete.addEventListener("click", (e) => handleDelete(e));
+  btnNotDone && btnNotDone.addEventListener("click", (e) => handleNotDone(e));
+  btnDone && btnDone.addEventListener("click", (e) => handleDone(e));
+};

@@ -19,26 +19,31 @@
       <div style="width: 100%">
         <h1>Book Shelves App</h1>
       </div>
-      <div style="display: flex; flex-direction: row; align-items: center">
+      <form
+        id="search"
+        style="display: flex; flex-direction: row; align-items: center"
+      >
         <input
+          id="input-search"
           class="form-input"
           type="text"
-          name="title"
           placeholder="Search book"
           required
         />
-        <div
+        <button
           style="
             color: white;
             width: 25px;
             height: 25px;
             cursor: pointer;
             padding: 0 15px;
+            background: transparent;
+            border: transparent;
           "
         >
           <i class="bi bi-search"></i>
-        </div>
-      </div>
+        </button>
+      </form>
     </header>
     <main
       class="main-container"
