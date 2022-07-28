@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,277 +8,107 @@
     <link rel="stylesheet" href="./assets/css/index.css" />
     <link rel="stylesheet" href="./assets/css/scrollbar.css" />
     <!-- Bootstrap Icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div style="width: 100%">
-            <h1>Book Shelves App</h1>
-        </div>
-        <div style="display: flex; flex-direction: row; align-items: center">
-            <input class="form-input" type="text" name="title" placeholder="Search book" required />
-            <div style="
+      <div style="width: 100%">
+        <h1>Book Shelves App</h1>
+      </div>
+      <div style="display: flex; flex-direction: row; align-items: center">
+        <input
+          class="form-input"
+          type="text"
+          name="title"
+          placeholder="Search book"
+          required
+        />
+        <div
+          style="
             color: white;
             width: 25px;
             height: 25px;
             cursor: pointer;
             padding: 0 15px;
-          ">
-                <i class="bi bi-search"></i>
-            </div>
+          "
+        >
+          <i class="bi bi-search"></i>
         </div>
+      </div>
     </header>
-    <main class="main-container" style="display: flex; flex-direction: row; width: 100%; height: 85vh">
-        <section class="book-shelf-container">
-            <div class="book-shelf">
-                <div class="book-shelf-title" style="border-bottom: 2px solid royalblue">
-                    <p>Input Book Data</p>
-                </div>
-                <form class="input-book-form" action="" style="display: flex; flex-direction: column">
-                    <label>Book Title <b style="color: orange">*</b></label>
-                    <input class="form-input" type="text" name="title" required />
-                    <label>Book Author <b style="color: orange">*</b></label>
-                    <input class="form-input" type="text" name="author" required />
-                    <label>Release Year <b style="color: orange">*</b></label>
-                    <input class="form-input" type="text" name="year" required />
-                    <div class="form-check">
-                        <input type="checkbox" name="isComplete" />
-                        <label>Done Reading</label>
-                    </div>
-                    <button id="book-submit" class="form-button">Input Data</button>
-                    <span style="color: orange; margin: 15px 0"><b>*</b> required</span>
-                </form>
+    <main
+      class="main-container"
+      style="display: flex; flex-direction: row; width: 100%; height: 85vh"
+    >
+      <section class="book-shelf-container">
+        <div class="book-shelf">
+          <div
+            class="book-shelf-title"
+            style="border-bottom: 2px solid royalblue"
+          >
+            <p>Input Book Data</p>
+          </div>
+          <form
+            id="input-book-form"
+            class="input-book-form"
+            action=""
+            style="display: flex; flex-direction: column"
+          >
+            <label>Book Title <b style="color: orange">*</b></label>
+            <input id="title" class="form-input" type="text" name="title" />
+            <label>Book Author <b style="color: orange">*</b></label>
+            <input id="author" class="form-input" type="text" name="author" />
+            <label>Release Year <b style="color: orange">*</b></label>
+            <input id="year" class="form-input" type="text" name="year" />
+            <div class="form-check">
+              <input id="isComplete" type="checkbox" name="isComplete" />
+              <label>Done Reading</label>
             </div>
-        </section>
-        <section class="book-shelf-container">
-            <div class="book-shelf">
-                <div class="book-shelf-title" style="border-bottom: 2px solid orange">
-                    <p>Not Done</p>
-                </div>
-                <div id="notdone" class="book-shelf-content"></div>
-            </div>
-            <div class="book-shelf">
-                <div class="book-shelf-title" style="border-bottom: 2px solid green">
-                    <p>Done</p>
-                </div>
-                <div id="done" class="book-shelf-content"></div>
-            </div>
-        </section>
+            <button id="book-submit" class="form-button">Input Data</button>
+            <span style="color: orange; margin: 15px 0"><b>*</b> required</span>
+          </form>
+        </div>
+        <!-- <div class="book-shelf-container">
+          <button id="startApp">Start</button>
+          <button onclick="localStorage.clear()">Clear</button>
+        </div> -->
+      </section>
+      <section class="book-shelf-container">
+        <div class="book-shelf">
+          <div class="book-shelf-title" style="border-bottom: 2px solid orange">
+            <p>Not Done</p>
+          </div>
+          <div id="notdone" class="book-shelf-content"></div>
+        </div>
+        <div class="book-shelf">
+          <div class="book-shelf-title" style="border-bottom: 2px solid green">
+            <p>Done</p>
+          </div>
+          <div id="done" class="book-shelf-content"></div>
+        </div>
+      </section>
     </main>
-    <footer style="
+    <footer
+      style="
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-      ">
-        <p style="margin: 0; padding: 5px">
-            &copy; Copyright 2022 | Tjipto Steven Senjaya
-        </p>
+      "
+    >
+      <p style="margin: 0; padding: 5px">
+        &copy; Copyright 2022 | Tjipto Steven Senjaya
+      </p>
     </footer>
-    <script>
-        const popular = async() => {
-            try {
-                let res = await fetch(
-                    "https://api.themoviedb.org/3/list/8210332?api_key=d4538f936ffc326e6145626accc8d24d"
-                ).then((re) => re.json());
-                await console.log(res);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        popular();
-        const books = [{
-            id: 3657848524,
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 365784852,
-            title: "Captain America",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 36578485,
-            title: "Superman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 3657848,
-            title: "Batman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 3657848524,
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 365784852,
-            title: "Captain America",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 36578485,
-            title: "Superman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 3657848,
-            title: "Batman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 3657848524,
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 365784852,
-            title: "Captain America",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 36578485,
-            title: "Superman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 3657848,
-            title: "Batman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 3657848524,
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 365784852,
-            title: "Captain America",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 36578485,
-            title: "Superman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 3657848,
-            title: "Batman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 3657848524,
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 365784852,
-            title: "Captain America",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 36578485,
-            title: "Superman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 3657848,
-            title: "Batman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 3657848524,
-            title: "Harry Potter and the Philosopher's Stone",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 365784852,
-            title: "Captain America",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, {
-            id: 36578485,
-            title: "Superman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: false,
-        }, {
-            id: 3657848,
-            title: "Batman",
-            author: "J.K Rowling",
-            year: 1997,
-            isComplete: true,
-        }, ];
-
-        let button = document.getElementById("book-submit");
-        button.addEventListener("click", addBook);
-
-        let notDoneContent = document.getElementById("notdone");
-        let doneContent = document.getElementById("done");
-
-        function addBook(Arr, Out, Done) {
-            Arr.forEach((d) => {
-                // book detail input
-                let div = document.createElement("div");
-                div.className = "book";
-                div.id = d.id;
-                div.innerHTML =
-                    '<div class="book-detail">' +
-                    d.title +
-                    "<br/><small>~ " +
-                    d.author +
-                    " - " +
-                    d.year +
-                    "</small></div>" +
-                    '<div class="book-control">' +
-                    '<div class="book-delete"><i class="bi bi-x-square"></i></div>' +
-                    (Done ?
-                        '<div class="book-notdone"><i class="bi bi-dash-square"></i></div>' :
-                        '<div class="book-done"><i class="bi bi-check-square"></i></div>') +
-                    "</div>";
-
-                console.log(div);
-                // render to book content div
-                Out.appendChild(div);
-            });
-        }
-
-        function bookNotDone() {
-            let notDoneArray = books.filter((f) => f.isComplete === false);
-            addBook(notDoneArray, notDoneContent, false);
-        }
-
-        function bookDone() {
-            let doneArray = books.filter((f) => f.isComplete === true);
-            addBook(doneArray, doneContent, true);
-        }
-        console.log(bookNotDone());
-        console.log(bookDone());
+    <!-- <script type="javascript" src="./assets/js/webStorage.jsx"></script> -->
+    <script type="module" src="./assets/js/bookShelf.js"></script>
+    <script type="module">
+      // const popular = async () => { // try { // let res = await fetch( // "https://api.themoviedb.org/3/list/8210332?api_key=d4538f936ffc326e6145626accc8d24d" // ).then((re) => re.json()); // await console.log(res); // } catch (error) { // console.log(error);
+      // } // }; // popular();
     </script>
-</body>
-
+  </body>
 </html>

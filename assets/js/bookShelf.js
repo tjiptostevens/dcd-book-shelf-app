@@ -95,4 +95,18 @@ const bookDone = () => {
   arrBook(BOOKSTORE, doneContent, true);
 };
 
-btnDelete.addEventListener("click", () => handleDelete());
+const handleDelete = (id) => {
+  console.log(id);
+};
+
+const handleNotDone = (id) => {
+  console.log(id);
+};
+
+const handleDone = (id) => {
+  console.log(id);
+};
+
+// btnDelete.addEventListener("click", (e) => handleDelete(e));
+// btnNotDone.addEventListener("click", (e) => handleNotDone(e));
+// btnDone.addEventListener("click", (e) => handleDone(e));
