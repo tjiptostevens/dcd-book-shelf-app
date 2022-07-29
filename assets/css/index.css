@@ -1,175 +1,159 @@
 body {
-    width: 100%;
-    max-height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(34, 34, 34);
-    color: white;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: black;
-    height: 10vh;
-    border-bottom: 1px solid grey;
-    padding: 0 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  height: 10vh;
+  border-bottom: 1px solid grey;
+  padding: 0 15px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 85vh;
 }
 
 .book-shelf-container {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .book-shelf {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    height: 50%;
-    padding: 15px;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  align-content: flex-start;
+  max-height: 40vh;
+  padding: 15px;
 }
 
 .book-shelf-title {
-    width: 100%;
-    align-self: flex-start;
+  width: 100%;
+  align-self: flex-start;
 }
 
 .book-shelf-content {
-    width: 100%;
-    padding: 15px;
-    overflow: auto;
-    height: inherit;
+  width: 40vw;
+  padding: 15px;
+  overflow: auto;
+  height: inherit;
 }
 
 .book {
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.3);
-    padding: 7px 10px;
-    border-radius: 5px;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    margin-bottom: 7px;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 7px 10px;
+  border-radius: 5px;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 7px;
 }
 
 .book-control {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-right: 10px;
-    font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 10px;
+  font-size: 20px;
 }
 
 .book-delete {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25px;
-    height: 25px;
-    color: white;
-    cursor: pointer;
-    transition: all 500ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  color: white;
+  cursor: pointer;
+  transition: all 500ms;
 }
 
 .book-notdone {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25px;
-    height: 25px;
-    color: white;
-    cursor: pointer;
-    transition: all 500ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  color: white;
+  cursor: pointer;
+  transition: all 500ms;
 }
 
 .book-done {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25px;
-    height: 25px;
-    color: white;
-    cursor: pointer;
-    transition: all 500ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  color: white;
+  cursor: pointer;
+  transition: all 500ms;
 }
 
 .book-delete:hover {
-    color: red;
-    transition: all 500ms;
+  color: red;
+  transition: all 500ms;
 }
 
 .book-notdone:hover {
-    color: orange;
-    transition: all 500ms;
+  color: orange;
+  transition: all 500ms;
 }
 
 .book-done:hover {
-    color: green;
-    transition: all 500ms;
+  color: green;
+  transition: all 500ms;
 }
-
-
-/* .tooltip {
-    position: relative;
-}
-
-.tooltiptxt {
-    visibility: hidden;
-    background-color: rgba(255, 255, 255, 0.39);
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 3px 6px;
-    font-size: 10px;
-    position: absolute;
-    z-index: 1;
-    transition: all 500ms;
-}
-
-.tooltip:hover>.tooltiptxt {
-    visibility: visible;
-    transition: all 500ms;
-} */
 
 .input-book-form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    max-width: 400px;
-    align-self: center;
-    margin: auto;
-    padding: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-width: 400px;
+  align-self: center;
+  /* margin: auto; */
+  /* padding: 25px; */
 }
 
 .form-input {
-    padding: 7px;
-    margin-bottom: 5px;
-    border-radius: 5px;
+  padding: 7px;
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 .form-check {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .form-button {
-    width: 100%;
-    padding: 7px 14px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 500ms;
+  width: 100%;
+  padding: 7px 14px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 500ms;
 }
 
 .form-button:hover {
-    color: white;
-    font-weight: bold;
-    border: 1px solid #f9f2ed;
-    background-color: royalblue;
-    cursor: pointer;
-    transition: all 500ms;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #f9f2ed;
+  background-color: royalblue;
+  cursor: pointer;
+  transition: all 500ms;
 }

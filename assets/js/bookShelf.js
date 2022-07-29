@@ -11,8 +11,14 @@ let notDoneContent = document.getElementById("notdone");
 let doneContent = document.getElementById("done");
 let form = document.getElementById("input-book-form");
 let search = document.getElementById("input-search");
+let searchInput = document.getElementById("input-search");
+let searchContent = document.getElementById("search-res");
 
-search.addEventListener("change", (e) => handleSearch(e));
+// search event listener
+search.addEventListener("keypress", (e) => handleSearch(e));
+search.addEventListener("keydown", (e) => handleSearch(e));
+search.addEventListener("keyup", (e) => handleSearch(e));
+search.addEventListener("blur", (e) => handleSearch(e));
 
 // Initialize App Local Storage on LOAD
 const startApp = () => {
@@ -22,13 +28,15 @@ window.addEventListener("load", () => {
   startApp();
   bookNotDone();
   bookDone();
+  searchInput.value = "";
 });
+
 // Handle Search
 const handleSearch = (e) => {
   // e.preventDefault();
-  let searchInput = document.getElementById("input-search");
-  const searchRegex =
-    searchInput && new RegExp(`${searchInput.value.toUpperCase()}`, "gi");
+  searchContent.innerHTML = "";
+  // filter array using regex
+  const searchRegex = searchInput && new RegExp(`${searchInput.value}`, "gi");
   let arr = BOOKSTORE.filter(
     (f) =>
       !searchRegex ||
@@ -36,7 +44,11 @@ const handleSearch = (e) => {
         f.title.toUpperCase() + f.author.toUpperCase() + f.year.toString()
       )
   );
-  console.log(arr);
+  // render search content
+  if (searchInput.value === "") {
+  } else {
+    arrBook(arr, searchContent);
+  }
 };
 
 // Handle Submit form
@@ -52,7 +64,6 @@ const handleSubmit = () => {
     year: yearInput.value,
     isComplete: isCompleteInput.checked,
   };
-  console.log(bookInput);
   addBookStorage(bookInput);
   // clear form
   titleInput.value = "";
@@ -72,7 +83,14 @@ const arrBook = (Arr, Out, Status) => {
     Out.appendChild(div);
   } else {
     let array = [];
-    array = Arr.filter((f) => f.isComplete === Status);
+    // check if param status exist
+    if (Status === undefined) {
+      array = Arr.sort((a, b) => a.id < b.id);
+    } else {
+      array = Arr.sort((a, b) => a.id < b.id).filter(
+        (f) => f.isComplete === Status
+      );
+    }
     // Check if filtered array = 0
     if (array.length === 0) {
       let div = document.createElement("div");
@@ -97,7 +115,7 @@ const arrBook = (Arr, Out, Status) => {
           '<div id="del-' +
           d.id +
           '" class="book-delete"><i class="bi bi-x-square"></i></div>' +
-          (Status
+          (d.isComplete
             ? '<div id="not-' +
               d.id +
               '" class="book-notdone"><i class="bi bi-dash-square"></i></div>'
@@ -134,6 +152,7 @@ const handleDelete = (e) => {
   data.splice(index, 1);
   updateBookStorage(data);
   console.log("BOOK DELETED");
+  searchInput.value = "";
 };
 
 const handleNotDone = (e) => {
@@ -144,6 +163,7 @@ const handleNotDone = (e) => {
   );
   updateBookStorage(index);
   console.log("BOOK UPDATED");
+  searchInput.value = "";
 };
 
 const handleDone = (e) => {
@@ -154,6 +174,7 @@ const handleDone = (e) => {
   );
   updateBookStorage(index);
   console.log("BOOK UPDATED");
+  searchInput.value = "";
 };
 
 // add listener to each button by ID

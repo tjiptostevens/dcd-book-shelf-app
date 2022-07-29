@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/img/BS.png" type="image/png" />
     <title>Book Shelves App</title>
     <link rel="stylesheet" href="./assets/css/index.css" />
     <link rel="stylesheet" href="./assets/css/scrollbar.css" />
@@ -16,14 +17,23 @@
 
   <body>
     <header>
-      <div style="width: 100%">
+      <div
+        style="
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        "
+      >
+        <img
+          src="./assets/img/BS.png"
+          alt="logo"
+          style="height: 50px; margin-right: 15px; border-radius: 5px"
+        />
         <h1>Book Shelves App</h1>
       </div>
     </header>
-    <main
-      class="main-container"
-      style="display: flex; flex-direction: row; width: 100%; height: 85vh"
-    >
+    <main class="main-container">
       <section class="book-shelf-container">
         <div class="book-shelf">
           <div
@@ -32,59 +42,71 @@
           >
             <p>Input Book Data</p>
           </div>
-          <form
-            id="input-book-form"
-            class="input-book-form"
-            action=""
-            style="display: flex; flex-direction: column"
-          >
-            <label>Book Title <b style="color: orange">*</b></label>
-            <input id="title" class="form-input" type="text" name="title" />
-            <label>Book Author <b style="color: orange">*</b></label>
-            <input id="author" class="form-input" type="text" name="author" />
-            <label>Release Year <b style="color: orange">*</b></label>
-            <input id="year" class="form-input" type="text" name="year" />
-            <div class="form-check">
-              <input id="isComplete" type="checkbox" name="isComplete" />
-              <label>Done Reading</label>
-            </div>
-            <button id="book-submit" class="form-button">Input Data</button>
-            <span style="color: orange; margin: 15px 0"><b>*</b> required</span>
-          </form>
+          <div class="book-shelf-content" style="position: relative">
+            <span
+              style="position: absolute; color: orange; right: 15px; top: 15px"
+              ><b>*</b> required</span
+            >
+            <form
+              id="input-book-form"
+              class="input-book-form"
+              style="display: flex; flex-direction: column"
+            >
+              <label>Book Title <b style="color: orange">*</b></label>
+              <input id="title" class="form-input" type="text" name="title" />
+              <label>Book Author <b style="color: orange">*</b></label>
+              <input id="author" class="form-input" type="text" name="author" />
+              <label>Release Year <b style="color: orange">*</b></label>
+              <input id="year" class="form-input" type="text" name="year" />
+              <div class="form-check">
+                <input id="isComplete" type="checkbox" name="isComplete" />
+                <label>Done Reading</label>
+              </div>
+              <button id="book-submit" class="form-button">Input Data</button>
+            </form>
+          </div>
         </div>
         <div class="book-shelf">
           <div class="book-shelf-title" style="border-bottom: 2px solid yellow">
-            <div style="display: flex; justify-content: space-between">
-              <p>Search Book</p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 40vw;
+              "
+            >
+              <p style="min-width: 15vw">Search Book</p>
+              <div style="width: 100%; position: relative">
+                <input
+                  id="input-search"
+                  class="form-input"
+                  type="text"
+                  placeholder="Search book by title, author & year."
+                  style="width: 100%"
+                  required
+                />
+                <i
+                  class="bi bi-search"
+                  style="position: absolute; right: -7px; top: 7px; color: grey"
+                ></i>
+              </div>
             </div>
           </div>
-          <div style="width: 80%; position: relative; padding: 15px auto">
-            <input
-              id="input-search"
-              class="form-input"
-              type="text"
-              placeholder="Search book by title, author & year."
-              style="width: 100%"
-              required
-            />
-            <i
-              class="bi bi-search"
-              style="position: absolute; right: 15px; top: 10px; color: grey"
-            ></i>
-          </div>
+
           <div id="search-res" class="book-shelf-content"></div>
         </div>
       </section>
       <section class="book-shelf-container">
         <div class="book-shelf">
           <div class="book-shelf-title" style="border-bottom: 2px solid orange">
-            <p>Not Done</p>
+            <p>Not Done Reading</p>
           </div>
           <div id="notdone" class="book-shelf-content"></div>
         </div>
         <div class="book-shelf">
           <div class="book-shelf-title" style="border-bottom: 2px solid green">
-            <p>Done</p>
+            <p>Done Reading</p>
           </div>
           <div id="done" class="book-shelf-content"></div>
         </div>
@@ -102,11 +124,6 @@
         &copy; Copyright 2022 | Tjipto Steven Senjaya
       </p>
     </footer>
-    <!-- <script type="javascript" src="./assets/js/webStorage.jsx"></script> -->
     <script type="module" src="./assets/js/bookShelf.js"></script>
-    <script type="module">
-      // const popular = async () => { // try { // let res = await fetch( // "https://api.themoviedb.org/3/list/8210332?api_key=d4538f936ffc326e6145626accc8d24d" // ).then((re) => re.json()); // await console.log(res); // } catch (error) { // console.log(error);
-      // } // }; // popular();
-    </script>
   </body>
 </html>
